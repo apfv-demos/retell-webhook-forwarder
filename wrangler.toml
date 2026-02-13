@@ -1,0 +1,19 @@
+name = "retell-webhook-forwarder"
+main = "src/index.ts"
+compatibility_date = "2025-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Non-secret configuration variables
+# Override these per-environment or in the Cloudflare dashboard
+[vars]
+ALLOWED_EVENTS = "call_analyzed"
+ALLOWED_IPS = "100.20.5.228"
+HMAC_ENABLED = "true"
+IP_FILTER_ENABLED = "true"
+TOKEN_AUTH_ENABLED = "false"
+API_TOKEN_HEADER = "x-api-token"
+
+# Secrets are NOT defined here — set them with:
+#   npx wrangler secret put RETELL_API_KEY
+#   npx wrangler secret put N8N_WEBHOOK_URL
+#   npx wrangler secret put API_TOKEN  (optional)

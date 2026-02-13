@@ -1,0 +1,22 @@
+{
+  "name": "retell-webhook-forwarder",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker that filters and forwards Retell AI webhooks to n8n, with HMAC verification, IP allowlisting, and event filtering.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "deploy:dry": "wrangler deploy --dry-run",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "logs": "wrangler tail"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.0",
+    "@cloudflare/workers-types": "^4.20250214.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "wrangler": "^3.100.0"
+  }
+}

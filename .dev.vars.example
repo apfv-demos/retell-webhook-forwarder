@@ -1,0 +1,14 @@
+# Copy this file to .dev.vars and fill in your values.
+# .dev.vars is gitignored and will NOT be committed.
+
+# Required — your Retell API key (used for HMAC signature verification)
+RETELL_API_KEY=your_retell_api_key_here
+
+# Required — the n8n webhook URL to forward events to
+N8N_WEBHOOK_URL=https://your-n8n-instance.example.com/webhook/retell
+
+# Optional — custom API token for extra authentication
+# API_TOKEN=your_optional_token_here
+
+# Local dev overrides (IP filter doesn't work locally)
+IP_FILTER_ENABLED=false
