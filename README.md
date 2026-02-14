@@ -223,19 +223,36 @@ This worker implements multiple layers of security:
 
 ---
 
-## Claude Code Skill (Guided Setup)
+## Claude Skill (Guided Setup)
 
 This repo includes a Claude skill that walks you through the entire setup interactively — from prerequisites to a working deployment. Ideal if you are new to Cloudflare Workers.
 
-### Install in Claude Desktop
+### Option A: Claude Desktop — Chat Tab (Skill Upload)
+
+Best for quick guidance. Claude explains the steps; you run commands on your machine.
 
 1. **[Download retell-webhook-forwarder.zip](https://github.com/apfv-demos/retell-webhook-forwarder/raw/main/retell-webhook-forwarder.zip)** (direct download link)
 2. Open Claude Desktop → **Settings** → **Capabilities** → **Skills**
 3. Click **+ Add** → **Upload a skill**
 4. Select the downloaded ZIP file
-5. Type `/retell-webhook-forwarder` in any Code chat to start
+5. Type `/retell-webhook-forwarder` in any chat to start
 
-### Install in Claude Code (CLI / VS Code)
+### Option B: Claude Desktop — Code Tab (Plugin)
+
+Best for a fully hands-on experience. Claude runs commands directly on your machine.
+
+```bash
+git clone https://github.com/apfv-demos/retell-webhook-forwarder.git
+```
+
+Then in the Claude Desktop Code tab:
+```
+/plugin install --plugin-dir ./retell-webhook-forwarder/plugin
+```
+
+Use `/retell-forwarder:deploy` to start the guided setup.
+
+### Option C: Claude Code (CLI / VS Code)
 
 ```bash
 git clone https://github.com/apfv-demos/retell-webhook-forwarder.git
