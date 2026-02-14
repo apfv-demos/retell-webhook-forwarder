@@ -99,10 +99,15 @@ The signature has a 5-minute freshness window. Rare in production. If it persist
 - Verify the correct Retell API key is set (re-set it to be sure)
 
 ### "Invalid signature"
-Wrong Retell API key. The `RETELL_API_KEY` must match Retell Dashboard > Settings > API Keys exactly.
+Most common cause: **using a standard API key instead of the Webhook API key**. Retell has two types of keys — only the one with the blue "Webhook" badge can verify HMAC signatures.
+
+1. Go to Retell Dashboard > Settings > API Keys
+2. Find the key with the blue **"Webhook"** badge (there is exactly one per account)
+3. Copy that key and re-set it:
 ```bash
 npx wrangler secret put RETELL_API_KEY
 ```
+A standard API key (no badge) will always produce "Invalid signature" — it cannot sign webhooks.
 
 ## IP Filter Issues
 

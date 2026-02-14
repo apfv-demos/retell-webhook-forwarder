@@ -49,12 +49,21 @@ Retell signs every webhook with HMAC-SHA256 using the account's API key.
 - The forwarder checks `CF-Connecting-IP` header (set by Cloudflare, cannot be spoofed)
 - If Retell adds more IPs in the future, update `ALLOWED_IPS` in `wrangler.toml`
 
-## Retell API Key
+## Retell API Keys
+
+Retell has two types of API keys. This distinction is critical for HMAC verification:
+
+| Type | Badge | Can verify webhooks? | Limit |
+|---|---|---|---|
+| Standard API key | None | No | Multiple per workspace |
+| Webhook API key | Blue "Webhook" badge | Yes | Exactly one per workspace |
 
 - Found in: Retell Dashboard > Settings > API Keys
-- Format: starts with `key_` followed by hex characters
-- Same key is used for both REST API calls and HMAC webhook verification
+- Format: both types start with `key_` followed by hex characters
+- **Only the webhook-tagged key signs webhook requests** — using a standard key causes "Invalid signature" errors
+- The webhook key cannot be deleted (Retell enforces this)
 - The forwarder only uses it for HMAC verification — it never calls the Retell API
+- Docs: https://docs.retellai.com/accounts/api-keys-overview
 
 ## call_analyzed Payload Structure
 

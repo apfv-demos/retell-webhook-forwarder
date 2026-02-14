@@ -33,10 +33,11 @@ node -v
 ```
 - If not installed or below v20: direct them to https://nodejs.org/ and have them download the LTS version. Wait for them to install before continuing.
 
-**3. Retell API key**
+**3. Retell Webhook API key**
 - Found in Retell Dashboard > Settings > API Keys
+- **Important**: Retell has two types of API keys. The user needs the one with the blue **"Webhook"** badge next to it — NOT a standard API key. Only the webhook key can verify HMAC signatures. There is exactly one per account.
 - Starts with `key_`
-- If they cannot find it, walk them through the dashboard navigation
+- If they cannot find it: go to Settings > API Keys and look for the row that has a blue "Webhook" tag. If they only see standard keys, they may need to scroll or check that they are in the right workspace.
 
 **4. Their n8n webhook URL**
 - The full URL from an n8n Webhook node, looks like `https://your-n8n.example.com/webhook/some-uuid`
@@ -95,8 +96,10 @@ This should display their account name. If it fails, see [troubleshooting.md](re
 
 Secrets are encrypted by Cloudflare and never appear in code. Set each one interactively.
 
-### 4a. Retell API Key
-Ask the user: "Please paste your Retell API key (starts with `key_`)."
+### 4a. Retell Webhook API Key
+Ask the user: "Please paste your Retell **Webhook** API key (starts with `key_`)."
+
+Remind them: this is the key with the blue **"Webhook"** badge in Retell Dashboard > Settings > API Keys. A standard API key will NOT work for HMAC verification — only the webhook-tagged key signs webhook requests.
 
 Then run — the user types/pastes the value when prompted:
 ```bash
