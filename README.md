@@ -55,6 +55,9 @@ npx wrangler secret put RETELL_API_KEY
 
 npx wrangler secret put N8N_WEBHOOK_URL
 # Paste your n8n webhook URL when prompted
+
+npx wrangler secret put N8N_WEBHOOK_SECRET
+# Paste a strong random token (used to authenticate requests to n8n)
 ```
 
 ### 3. Deploy
@@ -113,6 +116,7 @@ You still need to set the Retell/n8n secrets on Cloudflare (one-time):
 ```bash
 npx wrangler secret put RETELL_API_KEY
 npx wrangler secret put N8N_WEBHOOK_URL
+npx wrangler secret put N8N_WEBHOOK_SECRET
 ```
 
 Or set them in the Cloudflare Dashboard → Workers → your worker → Settings → Variables and Secrets.
@@ -131,6 +135,7 @@ All configuration is done through environment variables. Defaults work out of th
 |---|---|---|---|
 | `RETELL_API_KEY` | Yes | — | Your Retell API key (for HMAC verification) |
 | `N8N_WEBHOOK_URL` | Yes | — | The n8n webhook URL to forward events to |
+| `N8N_WEBHOOK_SECRET` | No | — | Shared secret sent as `x-webhook-secret` header to n8n |
 | `API_TOKEN` | No | — | Custom API token for extra authentication |
 | `ALLOWED_EVENTS` | No | `call_analyzed` | Comma-separated list of events to forward |
 | `ALLOWED_IPS` | No | `100.20.5.228` | Comma-separated list of allowed source IPs |
@@ -206,13 +211,15 @@ Or use `npx wrangler tail` to see real-time request logs in your terminal.
 
 ## Security
 
-This worker implements three layers of security:
+This worker implements multiple layers of security:
 
 1. **IP Allowlist** — Only accepts requests from Retell's IP (`100.20.5.228`). Uses Cloudflare's `CF-Connecting-IP` header which cannot be spoofed.
 
 2. **HMAC Signature Verification** — Verifies the `x-retell-signature` header using your Retell API key. This proves the webhook genuinely came from Retell and hasn't been tampered with.
 
-3. **Custom API Token** (optional) — An additional header check for defense-in-depth. Enable with `TOKEN_AUTH_ENABLED=true` and set `API_TOKEN`.
+3. **n8n Webhook Secret** (recommended) — Sends an `x-webhook-secret` header to n8n so it can verify requests came from this Worker. Configure n8n's webhook node with Header Auth to validate this value.
+
+4. **Custom API Token** (optional) — An additional inbound header check for defense-in-depth. Enable with `TOKEN_AUTH_ENABLED=true` and set `API_TOKEN`.
 
 ---
 

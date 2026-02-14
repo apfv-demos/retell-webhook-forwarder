@@ -16,4 +16,5 @@ API_TOKEN_HEADER = "x-api-token"
 # Secrets are NOT defined here — set them with:
 #   npx wrangler secret put RETELL_API_KEY
 #   npx wrangler secret put N8N_WEBHOOK_URL
-#   npx wrangler secret put API_TOKEN  (optional)
+#   npx wrangler secret put N8N_WEBHOOK_SECRET  (recommended)
+#   npx wrangler secret put API_TOKEN           (optional)
