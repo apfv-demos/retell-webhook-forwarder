@@ -242,15 +242,15 @@ Best for quick guidance. Claude explains the steps; you run commands on your mac
 Best for a fully hands-on experience. Claude runs commands directly on your machine.
 
 ```bash
-git clone https://github.com/apfv-demos/retell-webhook-forwarder.git
+git clone https://github.com/apfv-demos/amplify-voice.git
 ```
 
 Then in the Claude Desktop Code tab:
 ```
-/plugin install --plugin-dir ./retell-webhook-forwarder/plugin
+/plugin install --plugin-dir ./amplify-voice
 ```
 
-Use `/retell-forwarder:deploy` to start the guided setup.
+Use `/amplify-voice:deploy` to start the guided setup.
 
 ### Option C: Claude Code (CLI / VS Code)
 
