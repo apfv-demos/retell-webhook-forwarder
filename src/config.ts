@@ -29,6 +29,7 @@ export function parseConfig(env: Env): Config {
     allowedIps: parseSet(env.ALLOWED_IPS, '100.20.5.228'),
     apiToken: env.API_TOKEN || null,
     apiTokenHeader: (env.API_TOKEN_HEADER || 'x-api-token').toLowerCase(),
+    n8nWebhookSecret: env.N8N_WEBHOOK_SECRET || null,
     hmacEnabled: parseBool(env.HMAC_ENABLED, true),
     ipFilterEnabled: parseBool(env.IP_FILTER_ENABLED, true),
     tokenAuthEnabled: parseBool(env.TOKEN_AUTH_ENABLED, false),

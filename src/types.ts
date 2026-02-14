@@ -4,6 +4,7 @@ export interface Env {
   RETELL_API_KEY: string;
   N8N_WEBHOOK_URL: string;
   API_TOKEN?: string;
+  N8N_WEBHOOK_SECRET?: string;
 
   // Variables (set in wrangler.toml [vars])
   ALLOWED_EVENTS?: string;
@@ -22,6 +23,7 @@ export interface Config {
   allowedIps: Set<string>;
   apiToken: string | null;
   apiTokenHeader: string;
+  n8nWebhookSecret: string | null;
   hmacEnabled: boolean;
   ipFilterEnabled: boolean;
   tokenAuthEnabled: boolean;

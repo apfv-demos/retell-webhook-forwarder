@@ -9,6 +9,7 @@ export function testConfig(overrides: Partial<Config> = {}): Config {
     allowedIps: new Set(['100.20.5.228']),
     apiToken: null,
     apiTokenHeader: 'x-api-token',
+    n8nWebhookSecret: null,
     hmacEnabled: true,
     ipFilterEnabled: true,
     tokenAuthEnabled: false,

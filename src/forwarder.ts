@@ -15,12 +15,19 @@ export async function forwardToN8n(rawBody: string, config: Config): Promise<Res
   const timeoutId = setTimeout(() => controller.abort(), FORWARD_TIMEOUT_MS);
 
   try {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'User-Agent': 'RetellWebhookForwarder/1.0',
+    };
+
+    // Send shared secret so n8n can verify the request came from this Worker
+    if (config.n8nWebhookSecret) {
+      headers['x-webhook-secret'] = config.n8nWebhookSecret;
+    }
+
     const upstream = await fetch(config.n8nWebhookUrl, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'RetellWebhookForwarder/1.0',
-      },
+      headers,
       body: rawBody,
       signal: controller.signal,
     });
