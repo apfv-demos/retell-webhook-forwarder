@@ -229,7 +229,7 @@ This repo includes a Claude skill that walks you through the entire setup intera
 
 ### Install in Claude Desktop
 
-1. Download [`retell-webhook-forwarder.zip`](retell-webhook-forwarder.zip) from this repo
+1. **[Download retell-webhook-forwarder.zip](https://github.com/apfv-demos/retell-webhook-forwarder/raw/main/retell-webhook-forwarder.zip)** (direct download link)
 2. Open Claude Desktop → **Settings** → **Capabilities** → **Skills**
 3. Click **+ Add** → **Upload a skill**
 4. Select the downloaded ZIP file
